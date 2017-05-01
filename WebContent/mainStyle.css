@@ -1,8 +1,10 @@
 @CHARSET "UTF-8";
 
-body {
+body, html {
 	font-family: courier new;
 	background-color: #DDDDDD;
+	height: 100%;
+	width: 100%;
 }
 
 h1 {
@@ -16,9 +18,12 @@ p {
 }
 
 table {
-	display: block;
+	table-layout: fixed;
 	margin: auto;
-	width: auto;
+	width: 90%;
+	text-align: center;
+	position: relative;
+	left: 5%;
 }
 
 input[type="submit"]{
@@ -35,7 +40,7 @@ input[type="submit"]{
 	top: 1em;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, button:hover {
 	background-color: #EEEEEE;
 }
 
@@ -48,9 +53,27 @@ input[type="text"], input[type="password"]{
 	border-width: 0.1em;
 }
 
+button{
+	display: block;
+	padding: 0.2em 2em;
+	margin: 1em auto;
+	width: auto;
+	font-family: courier new;
+	font-size: 1em;
+	background-color: #FFFFFF;
+	border-style: dotted;
+	border-width: 0.1em;
+}
+
+.small{
+	padding: 0.2em 0.5em;
+	margin: 0em auto;
+}
+
 form {
 	margin: auto;
 }
+
 
 .mainbody{
 	width: 40%;
@@ -58,6 +81,16 @@ form {
 	margin: auto;
 	background-color: #FFFFFF;
 	
+}
+
+.mainbody_wide{
+	height: auto;
+	min-height: 70% !important;
+	
+	width: 90%;
+	padding: 3em 0em;
+	margin: auto;
+	background-color: #FFFFFF;
 }
 
 .loginbox{
