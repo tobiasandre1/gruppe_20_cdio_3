@@ -16,7 +16,7 @@ import dto.UserDTO;
 import idatalayer.IUserDAO;
 import idatalayer.IUserDAO.DALException;
 
-@Path("useradder")
+@Path("userupdater")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserUpdater {
