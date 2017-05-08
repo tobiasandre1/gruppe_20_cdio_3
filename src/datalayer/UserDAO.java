@@ -8,11 +8,16 @@ import dto.UserDTO;
 
 public class UserDAO implements IUserDAO{
 	static List<UserDTO> userList = new ArrayList<UserDTO>();
-	
-	public UserDAO(){
-			createUser(new UserDTO(1, "admin", "a", new ArrayList<String>() {
+	static{
+		userList.add(new UserDTO(1, "admin", "A", new ArrayList<String>() {
 				private static final long serialVersionUID = -5718424645068011262L;
 				{add("admin");}}, "", "010517-0000"));
+		userList.add(new UserDTO(2, "test", "T", new ArrayList<String>() {
+			private static final long serialVersionUID = -5718424645068011262L;
+			{add("operatoer");}}, "", "080517-0000"));
+	}
+	
+	public UserDAO(){
 	}
 	
 	
