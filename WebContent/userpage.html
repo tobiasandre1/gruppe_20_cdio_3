@@ -4,6 +4,36 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="mainStyle.css">
 <title>User page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="jquery.serialize-object.js"></script>
+<script>
+$( document ).ready(function() {
+	$.ajax({
+		url : "rest/datagetter",
+		data : $('#form').serializeJSON(),
+		contentType: "application/json",
+		method: 'POST',
+		success : function(response){
+			console.log(response);
+			console.log(response.userId);
+			for(var i = 0; i < response.length; i++){
+				$('#usertable').append("<tr>");
+				$('#usertable').append("<td>" + response[i].userId + "</td>"); 
+				$('#usertable').append("<td>" + response[i].userName + "</td>");
+				$('#usertable').append("<td>" + response[i].ini + "</td>");
+				$('#usertable').append("<td>" + response[i].roles + "</td>");
+				$('#usertable').append("<td>" + response[i].cpr + "</td>");
+				$('#usertable').append("<td><button class=\"small\" id=\"" + response[i].userId + "\">X</button><td>");
+				$('#usertable').append("</tr>");
+			}
+			//$.each()
+		},
+		error: function(jqXHR, text, error){
+			alert(jqXHR.status + text + error);
+		}
+	});
+}); 
+</script>
 
 </head>
 <body>
@@ -12,6 +42,7 @@
 	<button>Add user</button>
 	
 	<table>
+		<tbody id="usertable">
 		<tr>
 			<th>ID</th>
 			<th>User Name</th>
@@ -20,6 +51,7 @@
 			<th>CPR</th>
 			<th></th>
 		</tr>
+		<!--Comment 
 		<tr>
 			<td>420</td>
 			<td>Mr. Example</td>
@@ -36,6 +68,8 @@
 			<td>000000-0000</td>
 			<td><button class="small" id="4">X</button><td>
 		</tr>
+		-->
+		</tbody>
 	</table>	
 
 	</div>

@@ -7,12 +7,12 @@ import idatalayer.IUserDAO;
 import dto.UserDTO;
 
 public class UserDAO implements IUserDAO{
-	List<UserDTO> userList = new ArrayList<UserDTO>();
+	static List<UserDTO> userList = new ArrayList<UserDTO>();
 	
 	public UserDAO(){
-		createUser(new UserDTO(1, "admin", "a", new ArrayList<String>() {
-			private static final long serialVersionUID = -5718424645068011262L;
-			{add("admin");}}, "", "010517-0000"));
+			createUser(new UserDTO(1, "admin", "a", new ArrayList<String>() {
+				private static final long serialVersionUID = -5718424645068011262L;
+				{add("admin");}}, "", "010517-0000"));
 	}
 	
 	
@@ -25,7 +25,7 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	public void createUser(UserDTO user){
-		
+		user.setUserId(userList.size());
 		userList.add(user);
 		
 	}
