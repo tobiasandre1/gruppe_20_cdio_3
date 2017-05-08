@@ -16,15 +16,15 @@ import dto.UserDTO;
 import idatalayer.IUserDAO;
 import idatalayer.IUserDAO.DALException;
 
-@Path("useradder")
+@Path("userdeleter")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class UserAdder {
+public class UserDeleter {
 	IUserDAO dao = new UserDAO();
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public void insertUser() throws DALException{
+	public void deleteUser() throws DALException{
 		//TODO Implement
 	}
 }
