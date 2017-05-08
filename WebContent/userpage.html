@@ -18,12 +18,13 @@ $( document ).ready(function() {
 			console.log(response.userId);
 			for(var i = 0; i < response.length; i++){
 				$('#usertable').append("<tr>");
+				$('#usertable').append("<td><button class=\"small\" id=\"" + response[i].userId + "\">EDIT</button></td>");
 				$('#usertable').append("<td>" + response[i].userId + "</td>"); 
 				$('#usertable').append("<td>" + response[i].userName + "</td>");
 				$('#usertable').append("<td>" + response[i].ini + "</td>");
 				$('#usertable').append("<td>" + response[i].roles + "</td>");
 				$('#usertable').append("<td>" + response[i].cpr + "</td>");
-				$('#usertable').append("<td><button class=\"small\" id=\"" + response[i].userId + "\">X</button><td>");
+				$('#usertable').append("<td><button class=\"small\" id=\"" + response[i].userId + "\">X</button></td>");
 				$('#usertable').append("</tr>");
 			}
 			//$.each()
@@ -44,6 +45,7 @@ $( document ).ready(function() {
 	<table>
 		<tbody id="usertable">
 		<tr>
+			<th></th>
 			<th>ID</th>
 			<th>User Name</th>
 			<th>Initials</th>

@@ -22,8 +22,6 @@ table {
 	margin: auto;
 	width: 90%;
 	text-align: center;
-	position: relative;
-	left: 5%;
 }
 
 input[type="submit"]{
