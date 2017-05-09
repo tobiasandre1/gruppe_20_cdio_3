@@ -8,6 +8,7 @@ import dto.UserDTO;
 
 public class UserDAO implements IUserDAO{
 	static List<UserDTO> userList = new ArrayList<UserDTO>();
+	static int nextUserId;
 	static{
 		userList.add(new UserDTO(1, "admin", "A", new ArrayList<String>() {
 				private static final long serialVersionUID = -5718424645068011262L;
@@ -15,6 +16,7 @@ public class UserDAO implements IUserDAO{
 		userList.add(new UserDTO(2, "test", "T", new ArrayList<String>() {
 			private static final long serialVersionUID = -5718424645068011262L;
 			{add("operatoer");}}, "", "080517-0000"));
+		nextUserId = userList.size();
 	}
 	
 	public UserDAO(){
@@ -22,7 +24,12 @@ public class UserDAO implements IUserDAO{
 	
 	
 	public UserDTO getUser(int userId){
-		return userList.get(userId);
+		for(int i=0; i<userList.size(); i++){
+			if(userList.get(i).getUserId() == userId){
+				return userList.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public List<UserDTO> getUserList(){
@@ -30,8 +37,9 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	public void createUser(UserDTO user){
-		user.setUserId(userList.size());
+		user.setUserId(nextUserId);
 		userList.add(user);
+		nextUserId++;
 		
 	}
 	

@@ -10,21 +10,27 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import datalayer.UserDAO;
 import dto.UserDTO;
 import idatalayer.IUserDAO;
 import idatalayer.IUserDAO.DALException;
 
-@Path("userupdater")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public class UserUpdater {
+@Path("/userservice")
+public class UserService {
 	IUserDAO dao = new UserDAO();
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public void updateUser() throws DALException{
-		//TODO Implement
+	@Path("/delete")
+	@Consumes("application/x-www-form-urlencoded")
+	public Response deleteUser(
+		@FormParam("submit") int id
+			) throws DALException {
+		
+		dao.deleteUser(id);
+		return Response.status(200)
+			.entity("User " + id + " was deleted succesfully...")
+			.build();
 	}
 }
