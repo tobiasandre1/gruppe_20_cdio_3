@@ -37,9 +37,9 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	public void createUser(UserDTO user){
+		nextUserId++;
 		user.setUserId(nextUserId);
 		userList.add(user);
-		nextUserId++;
 		
 	}
 	
