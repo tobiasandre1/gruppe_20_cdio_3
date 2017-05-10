@@ -1,15 +1,13 @@
 package rest;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import datalayer.UserDAO;
@@ -26,12 +24,11 @@ public class UserService {
 	@Consumes("application/x-www-form-urlencoded")
 	public Response deleteUser(
 		@FormParam("submit") int id
-			) throws DALException {
+			) throws DALException, URISyntaxException {
 		
 		dao.deleteUser(id);
-		return Response.status(200)
-			.entity("User " + id + " was deleted succesfully...")
-			.build();
+		java.net.URI location = new java.net.URI("../userpage.html");
+	    return Response.temporaryRedirect(location).build();
 	}
 	
 	@POST
@@ -43,7 +40,7 @@ public class UserService {
 		@FormParam("ini") String ini,
 		@FormParam("role") String role,
 		@FormParam("cpr") String cpr
-			) throws DALException {
+			) throws DALException, URISyntaxException {
 		
 		List<String> roles = new ArrayList<String>();
 		roles.add(role);
@@ -51,9 +48,8 @@ public class UserService {
 		UserDTO user = new UserDTO(0, userName, ini, roles, password, cpr);
 		dao.createUser(user);
 		
-		return Response.status(200)
-			.entity("User was created succesfully...")
-			.build();
+		java.net.URI location = new java.net.URI("../userpage.html");
+	    return Response.temporaryRedirect(location).build();
 	}
 	
 }
