@@ -35,11 +35,7 @@ public class LoginVerification {
 		List<UserDTO> users = dao.getUserList();
 		
 		for(int i = 0; i < users.size(); i++){
-			System.out.println(users.get(i).getUserName());
-			System.out.println(users.get(i).getPassword());
-			System.out.println(userName);
-			System.out.println(password);
-			if(users.get(i).getUserName().equals(userName) && users.get(i).getPassword().equals(password)){
+				if(users.get(i).getUserName().equals(userName) && users.get(i).getPassword().equals(password)){
 				return Response.temporaryRedirect(new java.net.URI("../userpage.html")).build();
 			}
 		}
