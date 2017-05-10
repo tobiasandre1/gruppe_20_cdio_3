@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;

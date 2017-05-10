@@ -24,7 +24,7 @@ table {
 	text-align: center;
 }
 
-input[type="submit"]{
+input[type="submit"], input[type="button"]{
 	display: block;
 	margin: auto;
 	padding: 0.2em 4em;
