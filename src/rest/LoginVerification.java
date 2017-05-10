@@ -31,16 +31,19 @@ public class LoginVerification {
 			@FormParam("username") String userName, 
 			@FormParam("password") String password
 			) throws DALException, URISyntaxException{
+		
 		List<UserDTO> users = dao.getUserList();
 		
 		for(int i = 0; i < users.size(); i++){
-			if((users.get(i).getUserName() == userName) && (users.get(i).getPassword() == password)){
-				java.net.URI location = new java.net.URI("../userpage.html");
-			    return Response.temporaryRedirect(location).build();
+			System.out.println(users.get(i).getUserName());
+			System.out.println(users.get(i).getPassword());
+			System.out.println(userName);
+			System.out.println(password);
+			if(users.get(i).getUserName().equals(userName) && users.get(i).getPassword().equals(password)){
+				return Response.temporaryRedirect(new java.net.URI("../userpage.html")).build();
 			}
 		}
-		java.net.URI location = new java.net.URI("../index.html");
-	    return Response.temporaryRedirect(location).build();
+	    return Response.temporaryRedirect(new java.net.URI("../")).build();
 		
 	}
 }
