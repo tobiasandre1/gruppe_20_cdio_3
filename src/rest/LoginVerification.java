@@ -1,27 +1,46 @@
 package rest;
 
-import javax.ws.rs.*;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 
 import datalayer.UserDAO;
+import dto.UserDTO;
+import idatalayer.IUserDAO;
+import idatalayer.IUserDAO.DALException;
 
-@Path("/LoginVerification")
+@Path("/login")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class LoginVerification {
 
-	UserDAO userDAO = new UserDAO();
-	int response = 0;
-
+	IUserDAO dao = new UserDAO();
+	
 	@POST
-	public int verification(String username, String password){
-		for(int i = 0; i < userDAO.getUserList().size(); i++){
-			if((userDAO.getUser(i).getUserName() == username) && (userDAO.getUser(i).getPassword() == password)){
-				response = 1;
-				return response;
+	@Path("/verify")
+	@Consumes("application/x-www-form-urlencoded")
+	public Response verifyUser(
+			@FormParam("username") String userName, 
+			@FormParam("password") String password
+			) throws DALException, URISyntaxException{
+		List<UserDTO> users = dao.getUserList();
+		
+		for(int i = 0; i < users.size(); i++){
+			if((users.get(i).getUserName() == userName) && (users.get(i).getPassword() == password)){
+				java.net.URI location = new java.net.URI("../userpage.html");
+			    return Response.temporaryRedirect(location).build();
 			}
-		} 
-		return response;
+		}
+		java.net.URI location = new java.net.URI("../index.html");
+	    return Response.temporaryRedirect(location).build();
+		
 	}
 }

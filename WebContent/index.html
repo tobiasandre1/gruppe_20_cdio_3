@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="jquery.serialize-object.js"></script>
 
+<!-- 
 <script>
 	$( document ).ready(function (){
 		
@@ -17,12 +18,10 @@
 		var $password = $('#password');
 		
 		$('#LoginBtn').on('click', function(){
-	<!--		
 			var namePass = {
 				username: $username.val(),
 				password: $password.val()
-			};
-	-->		
+			};		
 			$.ajax({
 				url: "rest/LoginVerification",
 				data: $('#form').serializeJSON(),
@@ -40,7 +39,7 @@
 		
 	})
 </script>
-
+-->
 <body>
 
 	<div class="mainbody">
@@ -48,7 +47,7 @@
 		<div class="loginbox">
 		
 			<h1>Login</h1>
-			<form action = "" method = "post">
+			<form action ="rest/login/verify" method ="post">
 				
 				<div class="inputrow">Username <input class="input" type="text" name="username"></div>
 				<div class="inputrow">Password <input class="input" type="password" name="password"></div>
