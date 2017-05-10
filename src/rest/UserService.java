@@ -84,7 +84,6 @@ public class UserService {
 		UserDTO user = new UserDTO(Integer.parseInt(userId), userName, ini, roles, password, cpr);
 		
 		dao.updateUser(user);
-		//System.out.println(map.getContent());
 		java.net.URI location = new java.net.URI("../userpage.html");
 	    return Response.temporaryRedirect(location).build();
 	}
